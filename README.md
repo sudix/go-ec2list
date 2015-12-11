@@ -20,7 +20,7 @@ See [Configuring the AWS Command Line Interface - AWS Command Line Interface](ht
 ## Run command
 
 ```
-$ ec2list
+$ go-ec2list
 ```
 
 ## Result
@@ -45,5 +45,5 @@ EXAMPLE USAGE WITH INTERACTIVE SELECTION TOOLS.
 Set alias like below, and you can ssh login to the selected instance.
 
 ```sh
-alias ec2="ec2list | peco | cut -f3 | xargs -I{} sh -c 'ssh "ec2-user@{}" </dev/tty' ssh"
+alias ec2="go-ec2list | peco | cut -f3 | xargs -I{} sh -c 'ssh "ec2-user@{}" </dev/tty' ssh"
 ```
