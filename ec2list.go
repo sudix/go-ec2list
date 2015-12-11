@@ -168,6 +168,7 @@ func main() {
 	var wg sync.WaitGroup
 
 	for _, profile := range profiles {
+		profile := profile
 		creds := credentials.NewSharedCredentials(credfile, profile)
 		if ok := validateCredential(creds); !ok {
 			continue
@@ -176,15 +177,16 @@ func main() {
 		cfg := aws.NewConfig().WithCredentials(creds)
 
 		for _, region := range regions {
+			region := region
 			wg.Add(1)
-			go func(region string) {
+			go func() {
 				defer wg.Done()
 				infos, err := retrieve(cfg, profile, region)
 				if err != nil {
 					log.Fatal(err)
 				}
 				list.Add(infos...)
-			}(region)
+			}()
 		}
 	}
 
