@@ -67,7 +67,6 @@ func (l *EC2List) Sort() {
 }
 
 func (l *EC2List) Output(w io.Writer) {
-	l.Sort()
 	for _, info := range l.list {
 		fmt.Fprintf(w, info.String())
 	}
@@ -204,5 +203,6 @@ func main() {
 	}
 
 	wg.Wait()
+	list.Sort()
 	list.Output(os.Stdout)
 }
