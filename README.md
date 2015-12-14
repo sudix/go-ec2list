@@ -37,6 +37,7 @@ __Output Values__
 - Profile Name
 - Availability zone
 - Instance type
+- Instance state
 
 
 EXAMPLE USAGE WITH INTERACTIVE SELECTION TOOLS.

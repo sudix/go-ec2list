@@ -40,7 +40,7 @@ func (i *InstanceInfo) LowerName() string {
 }
 
 func (i *InstanceInfo) String() string {
-	return fmt.Sprintf("%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
+	return fmt.Sprintf("%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n",
 		i.Name,
 		p2s(i.InstanceId),
 		p2s(i.PublicIpAddress),
@@ -48,6 +48,7 @@ func (i *InstanceInfo) String() string {
 		i.Profile,
 		p2s(i.Placement.AvailabilityZone),
 		p2s(i.InstanceType),
+		p2s(i.State.Name),
 	)
 }
 
