@@ -8,6 +8,7 @@ import (
 	"sort"
 	"strings"
 	"sync"
+	"time"
 
 	"github.com/aws/aws-sdk-go/aws"
 	"github.com/aws/aws-sdk-go/aws/credentials"
@@ -131,9 +132,21 @@ func validateCredential(creds *credentials.Credentials) bool {
 
 func retrieve(cfg *aws.Config, profile, region string) ([]InstanceInfo, error) {
 	svc := ec2.New(session.New(cfg), &aws.Config{Region: aws.String(region)})
-	resp, err := svc.DescribeInstances(nil)
-	if err != nil {
-		return nil, err
+	c := make(chan bool, 1)
+	var resp *ec2.DescribeInstancesOutput
+	var err error
+	go func() {
+		resp, err = svc.DescribeInstances(nil)
+		if err != nil {
+			log.Fatalf("profile=%s region=%s err=%v\n", profile, region, err)
+		}
+		c <- true
+	}()
+
+	select {
+	case _ = <-c:
+	case <-time.After(time.Second * 10):
+		log.Fatalf("timeout error. profile=%s region=%s\n", profile, region)
 	}
 
 	var infos []InstanceInfo
