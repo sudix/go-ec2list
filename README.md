@@ -39,6 +39,21 @@ __Output Values__
 - Instance type
 - Instance state
 
+## Options
+
+### Cache
+
+If you set `-cachemin` option, go-ec2list caches results and uses that until it expires.
+Value means expire minutes.
+
+__USAGE__
+
+```
+$ go-ec2list -cachemin 10
+```
+
+The cache is stored to `$HOME/.go-ec2list/cache`.
+
 
 EXAMPLE USAGE WITH INTERACTIVE SELECTION TOOLS.
 =============
