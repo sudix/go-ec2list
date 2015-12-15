@@ -24,3 +24,4 @@ _testmain.go
 *.prof
 
 ec2list
+go-ec2list_*

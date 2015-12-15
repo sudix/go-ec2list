@@ -6,6 +6,16 @@ This tool is intended to use with interactive selection tools like [peco](https:
 INSTALLATION
 =============
 
+## Download binary file
+
+Dwonload the binary file for your platform from [release page](https://github.com/sudix/go-ec2list/releases) and move it where you want like below.
+
+```
+$ mv go-ec2list_linux_amd64 /usr/local/bin/go-ec2list
+```
+
+## By go get
+
 ```
 $ go get github.com/sudix/go-ec2list
 ```
