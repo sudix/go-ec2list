@@ -111,15 +111,21 @@ func retrieve(cfg *aws.Config, profile, region string) ([]InstanceInfo, error) {
 
 var (
 	cachemin int
+	refresh  bool
 )
 
 func init() {
 	flag.IntVar(&cachemin, "cachemin", 0, "Cache expire minutes.")
+	flag.BoolVar(&refresh, "refresh", false, "Delete and re-create cache.")
 }
 
 func main() {
 	flag.Parse()
 	cache := NewCache(cachemin)
+
+	if refresh {
+		cache.Delete()
+	}
 
 	if cache.Use() && cache.Available() {
 		cache.Output(os.Stdout)

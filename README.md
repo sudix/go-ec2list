@@ -54,6 +54,15 @@ $ go-ec2list -cachemin 10
 
 The cache is stored to `$HOME/.go-ec2list/cache`.
 
+### Delete cache
+
+When `-refresh` is specified, the cache will always be deleted and re-create cache regardless of `-cachemin` option.
+
+__USAGE__
+
+```
+$ go-ec2list -cachemin 10 -refresh
+```
 
 EXAMPLE USAGE WITH INTERACTIVE SELECTION TOOLS.
 =============
