@@ -21,6 +21,16 @@ func NewCache(cachemin int) Cache {
 	return c
 }
 
+func (c *Cache) Delete() {
+	if !c.exists() {
+		return
+	}
+
+	if err := os.Remove(c.filepath); err != nil {
+		log.Fatal(err)
+	}
+}
+
 func (c *Cache) Use() bool {
 	return c.ExpireMinute > 0
 }
