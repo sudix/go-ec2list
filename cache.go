@@ -5,9 +5,10 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
-	"os/user"
 	"path"
 	"time"
+
+	"github.com/mitchellh/go-homedir"
 )
 
 type Cache struct {
@@ -101,10 +102,9 @@ func mkDir(dirPath string) {
 }
 
 func getHomeDir() string {
-	var err error
-	usr, err := user.Current()
+	dir, err := homedir.Dir()
 	if err != nil {
 		log.Fatal(err)
 	}
-	return usr.HomeDir
+	return dir
 }
