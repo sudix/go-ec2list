@@ -25,3 +25,5 @@ _testmain.go
 
 ec2list
 go-ec2list_*
+
+.envrc
